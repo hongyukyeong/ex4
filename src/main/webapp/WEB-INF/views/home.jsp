@@ -6,6 +6,8 @@
 </head>
 <body>
 <h1>
+	<a href="notice/noticeList">notice</a>
+	<a href="freeboard/freeboardList">freeboard</a>
 	Hello world!  
 </h1>
 
