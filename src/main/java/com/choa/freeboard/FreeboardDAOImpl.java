@@ -73,8 +73,15 @@ public class FreeboardDAOImpl implements BoardDAO {
 		
 	}
 	
+
+	private int freeboardReplyUpdate(FreeboardDTO freeboardDTO) throws Exception{
+		
+		return sqlSession.update(NAMESPACE+"replyUpdate");
+	}
 	
-	
-	
+	public int boardReply(FreeboardDTO freeboardDTO) throws Exception{
+		
+		return sqlSession.insert(NAMESPACE+"reply", freeboardDTO);
+	}
 		
 }

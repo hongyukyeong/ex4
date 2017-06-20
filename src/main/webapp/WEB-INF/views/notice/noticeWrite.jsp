@@ -13,7 +13,7 @@
 	<form action="notice${path}" method="post">
 
 		<p><input type="hidden" name="num" value="${dto.num}">
-		WRITER : <input type="text"  name="writer" value="${dto.num}">
+		WRITER : <input type="text"  name="writer" value="${dto.writer}">
 		TITLE : <input type="text"  name=title value="${dto.title}">
 		<p><textarea rows="" cols="65"  name="contents" value="${dto.contents }"></textarea></p>
 	

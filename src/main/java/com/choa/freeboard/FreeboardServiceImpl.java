@@ -51,7 +51,9 @@ public class FreeboardServiceImpl implements BoardService  {
 	}
 
 	
-	
+	public int freeboardReply(FreeboardDTO freeboardDTO) throws Exception{
+		return freeboardDAOImpl.boardReply(freeboardDTO);
+	}
 
 	
 	

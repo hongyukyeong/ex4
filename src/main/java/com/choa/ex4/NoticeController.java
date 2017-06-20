@@ -38,16 +38,22 @@ public class NoticeController {
 	
 	//view
 	@RequestMapping(value="noticeView", method=RequestMethod.GET)
-	public void noticeView(Integer num, Model model) throws Exception{
+	public String noticeView(Integer num, Model model) throws Exception{
 		
 		BoardDTO boardDTO=noticeService.boardView(num);
 		model.addAttribute("view", boardDTO);
+		model.addAttribute("board","notice");
+		
+		return "board/boardView";
 	}
 	
 	//writeForm
 	@RequestMapping(value="noticeWrite", method=RequestMethod.GET)
-	public void noticeWrite(Model model){
+	public String noticeWrite(Model model){
 		model.addAttribute("path", "Write");
+		model.addAttribute("board","notice");
+		
+		return "board/boardWrite";
 		
 	}
 	//write
@@ -66,7 +72,7 @@ public class NoticeController {
 		/**/
 		rd.addFlashAttribute("message", message);
 		
-		return "redirect:noticeList?curPage=2";
+		return "board/result";
 		
 		/*redirect로 보내는 방법*/
 		/*return "redirect:/"; 바로 홈으로 가는 주소 */
@@ -81,8 +87,9 @@ public class NoticeController {
 			BoardDTO boardDTO = noticeService.boardView(num);
 			model.addAttribute("dto", boardDTO);
 			model.addAttribute("path", "Update");
+			model.addAttribute("board","notice");
 			
-			return "notice/noticeWrite";
+			return "board/boardWrite";
 	}
 	
 	//update
@@ -96,7 +103,7 @@ public class NoticeController {
 		}
 		
 		rd.addFlashAttribute("message", message);
-		return "redirect:noticeList";
+		return "board/result";
 		
 		//if문 성공 실패
 	}
@@ -114,7 +121,7 @@ public class NoticeController {
 		
 		
 		rd.addFlashAttribute("message", message);
-		return "redirect:noticeList";
+		return "board/result";
 		//if문 성공 실패
 	}
 	

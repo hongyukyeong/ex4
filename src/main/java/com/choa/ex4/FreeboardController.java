@@ -42,6 +42,7 @@ public class FreeboardController {
 			BoardDTO boardDTO=freeboardServiceImpl.boardView(num);
 			model.addAttribute("board", "freeboard");
 			model.addAttribute("view", boardDTO);
+			model.addAttribute("board", "freeboard");
 			
 			return "board/boardView";
 		}
@@ -52,7 +53,7 @@ public class FreeboardController {
 		public String freeboardWrite(Model model){
 			model.addAttribute("path", "Write");
 			model.addAttribute("board", "freeboard");
-			
+		
 			return "board/boardWrite";
 			
 		}
@@ -89,7 +90,7 @@ public class FreeboardController {
 				model.addAttribute("path", "Update");
 				model.addAttribute("board", "freeboard");
 				
-				return "freeboard/freeboardWrite";
+				return "board/boardWrite";
 		}
 		
 		//update
@@ -103,7 +104,7 @@ public class FreeboardController {
 			}
 			
 			rd.addFlashAttribute("message", message);
-			return "redirect:freeboardList";
+			return "board/result";
 			
 			//if문 성공 실패
 		}
@@ -121,13 +122,43 @@ public class FreeboardController {
 			
 			
 			rd.addFlashAttribute("message", message);
-			return "redirect:freeboardList";
+			return "board/result";
 			//if문 성공 실패
 		}
 		
+		
+		
+		@RequestMapping(value="freeboardReply", method=RequestMethod.GET)
+		public String freeboardReply(Model model){
+			model.addAttribute("path", "Reply");
+			model.addAttribute("board", "freeboard");
+		
+			return "board/boardWrite";
 			
+		}
 		
 		
+		
+		
+		@RequestMapping(value="freeboardReply", method=RequestMethod.POST)	
+		public String freeboardReply(FreeboardDTO freeboardDTO, Model model, RedirectAttributes rd) throws Exception{
+			
+			
+			int result=freeboardServiceImpl.freeboardReply(freeboardDTO);
+			String message ="FAIL";
+			
+			if(result>0){
+				message="SUCCESS";
+			}
+			
+			
+			/*redirect로 보낼 때 message도 보내고 싶고*/
+			/**/
+			rd.addFlashAttribute("message", message);
+			
+			return "board/result";
+			
+		}
 		
 		
 		
