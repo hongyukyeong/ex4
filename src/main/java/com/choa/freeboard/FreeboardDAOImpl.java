@@ -31,7 +31,7 @@ public class FreeboardDAOImpl implements BoardDAO {
 	@Override
 	public List<BoardDTO> boardList(RowMaker rowMaker) throws Exception {
 		
-		return sqlSession.selectOne(NAMESPACE+"list", rowMaker);
+		return sqlSession.selectList(NAMESPACE+"list", rowMaker);
 	}
 
 	@Override
