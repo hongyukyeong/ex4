@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.choa.board.BoardDTO;
 import com.choa.ex4.MyAbstractTest;
+import com.choa.util.ListInfo;
 import com.choa.util.PageMaker;
 
 
@@ -21,16 +22,20 @@ public class NoticeDAOImplTest extends MyAbstractTest {
 	
 	@Test
 	public void connectionTest() throws Exception{
-		PageMaker pageMaker = new PageMaker(1, 20);
+		ListInfo listInfo = new ListInfo();
+		listInfo.setFind("choa");
+		listInfo.setSearch("writer");
+		int count =dao.boardCount(listInfo);
 		
-		List<BoardDTO>ar = dao.boardList(pageMaker.getRowMaker());
-		
-		assertNotEquals(0, ar.size());
+		System.out.println(count);
+	
+				
+		assertNotEquals(0, count);
 	}
 	
-	@Test
+	/*@Test
 	public void countTest() throws Exception{
 		int count = dao.boardCount();
 		assertNotEquals(0, count);
-	}
+	}*/
 }

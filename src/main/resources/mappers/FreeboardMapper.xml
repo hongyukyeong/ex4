@@ -12,7 +12,7 @@
   	<select id="list" parameterType="com.choa.util.RowMaker" resultType="com.choa.freeboard.FreeboardDTO">
   		select * from 
   		(select rownum R, F.* from 
-  		(select * from freeboard order ref desc, step asc) F) 
+  		(select * from freeboard order by ref desc, step asc) F) 
   		where R between #{startRow} and #{lastRow}
   	</select>
   	

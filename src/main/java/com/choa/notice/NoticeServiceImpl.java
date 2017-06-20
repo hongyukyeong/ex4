@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.choa.board.BoardDTO;
 import com.choa.board.BoardService;
+import com.choa.util.ListInfo;
 import com.choa.util.MakePage;
 import com.choa.util.PageMaker;
+import com.choa.util.RowMaker;
 
 @Service
 //NoticeService noticeService = new NoticeService();
@@ -34,12 +36,14 @@ public class NoticeServiceImpl implements BoardService {
 	
 	
 	@Override
-	public List<BoardDTO> boardList(int curPage) throws Exception {
-		int result = noticeDAO.boardCount();
+	public List<BoardDTO> boardList(ListInfo listInfo) throws Exception {
+		int result = noticeDAO.boardCount(listInfo);
+		listInfo.makePage(result);
+		listInfo.setRow();
 		
-		PageMaker pageMaker = new PageMaker(curPage);
-		MakePage makePage = pageMaker.getMakePage(result);
-		return noticeDAO.boardList(pageMaker.getRowMaker());
+		
+		
+		return noticeDAO.boardList(listInfo);
 	}
 
 	@Override
